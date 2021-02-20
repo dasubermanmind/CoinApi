@@ -1,10 +1,9 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Request, Response, Router } from 'express';
 import financeController from '../controller/financeController';
 
 class financeRouter{
     private router = Router();
     private controller = financeController;
-
 
     get _router() {
         return this.router;

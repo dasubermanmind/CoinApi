@@ -16,3 +16,6 @@ const db = (): ConnectionOptions => {
         logging: false,
     };
 };
+
+
+export{ db};

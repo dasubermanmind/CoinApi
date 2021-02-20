@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import financeRouter from './financeRouter';
 
 class primaryRouter{
@@ -17,8 +17,6 @@ class primaryRouter{
     private configure = ()=>{
         this.router.use('/finance', this.financeRouter);
     };
-
-
 }
 
 export = new primaryRouter()._router;
