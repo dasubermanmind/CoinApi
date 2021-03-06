@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
-import express from 'express';
+import express = require("express");
 import primaryRouter from './router/primaryRouter';
 import {ConnectionOptions, createConnection} from 'typeorm';
-import {db} from './config';
+import financeRouter from './router/financeRouter';
 
 dotenv.config({
   path: '.env'
@@ -13,34 +13,38 @@ export interface Iresults{
   error: string;
 }
 
+class App {
 
-class Server {
-  public app = express();
-  public router = primaryRouter;
-  private db: ConnectionOptions;
+  public application: express.Application;
+  public prim_router = primaryRouter;
+  public fin_router = financeRouter;
+  public db: ConnectionOptions;
 
   constructor(db: ConnectionOptions){
-    
     if(!db){
       console.log('no db configs found');
     }
-    
-    // initilize the db connection
     this.db = db;
+    this.application = express.application;
   }
 
+  public async initialize(): Promise<Iresults>{
+    const results: Iresults = {success: false, error: ''};
+    try{
+      const dbApp = await createConnection(this.db);
+      await dbApp.runMigrations();
+    }catch(error){
+      results.error = 'Db connect failed';
+    }
+    this.mountPoints();
+    results.success = true;
+    return results;
+  }
+
+  public mountPoints() : void {
+    this.application.use('localhost:3000' + "/api", this.prim_router);
+    this.application.use('localhost:3000' + '/finance', this.fin_router);
+  }
 }
 
-const server = new Server(db());
-
-// server.init().then((ini: Iresults)=>{
-//     // if(ini.success){
-//     // }
-//   });
-
-server.app.use('/api', server.router);
-
-((port = process.env.APP_PORT || 5000) => {
-  server.app.listen(port, () => console.log(`> Listening on port ${port}`));
-})();
-
+export default App;
