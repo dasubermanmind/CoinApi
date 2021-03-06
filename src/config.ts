@@ -18,7 +18,7 @@ const db = (): ConnectionOptions => {
             `postgresql://${PGUSER}:${PGPW}@${PGHOST}:${PGPORT}/${PGDB}`
         ),
         entities:['src/entities/*.ts'],
-        migrations: ['src/migrations/*.ts,js'],
+        migrations: ['src/migrations/**/*.ts,js'],
         synchronize: false,
         logging: false,
     };

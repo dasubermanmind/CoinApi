@@ -1,13 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import Analysis from "./analysis";
 
 @Entity()
  class Crypto {
 
-    constructor(crypto_id: number, name: string, listing_price: number, ath: number){
+    constructor(crypto_id: number, name: string, listing_price: number, ath: number, crypto_analysis: Analysis[] ){
         this.crypto_id = crypto_id;
         this.name = name;
         this.listing_price = listing_price;
         this.ath = ath;
+        this.crypto_analysis = crypto_analysis;
     }
 
     @PrimaryGeneratedColumn()
@@ -21,6 +23,9 @@ import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
     
     @Column()
     ath: number;
+
+    @OneToMany((type)=> Analysis,(analysis)=>analysis.compute)
+    crypto_analysis: Analysis[];
 
 }
 
