@@ -17,7 +17,7 @@ const db = (): ConnectionOptions => {
         url: encodeURI(
             `postgresql://${PGUSER}:${PGPW}@${PGHOST}:${PGPORT}/${PGDB}`
         ),
-        entities:['src/entities/**/*.ts'],
+        entities:['src/entities/*.ts'],
         migrations: ['src/migrations/*.ts,js'],
         synchronize: false,
         logging: false,
