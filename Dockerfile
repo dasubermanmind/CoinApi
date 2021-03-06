@@ -1,6 +1,6 @@
-FROM node:14
+FROM node:14 as the_crypt
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/server
 
 COPY package*.json ./
 
