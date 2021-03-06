@@ -28,12 +28,15 @@ class FinanceController {
         return response.send(result);
     }
 
+    /*
     get = async (request: Request, response: Response): Promise<Response>=>{
         const { id } = request.params;
         // validate it
         // query it
         // return it
     }
+
+     */
 }
 
 export = new FinanceController();
