@@ -28,14 +28,14 @@ class App {
     }catch(error){
       results.error = 'Db connect failed';
     }
-    // this.application = express();
+
     this.mountPoints();
     results.success = true;
     return results;
   }
 
   public mountPoints() : void {
-    this.application.use('localhost:3000' + "/", routers.primary());
+    this.application.use('http://localhost:3000/' + "/api", routers.primary());
   }
 }
 

@@ -1,12 +1,10 @@
-import { Router } from 'express';
 import express = require("express")
 import FinanceController from "../controller/financeController";
 
 function primaryRouter(): express.Router{
-
     const router = express.Router();
-    const financeController  = new FinanceController();
-    router.get("/get", financeController.getAll);
+    const controller  = new FinanceController();
+    router.get("/fin", controller.getAll);
     return router;
 }
 
