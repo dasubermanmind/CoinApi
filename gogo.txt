@@ -9,7 +9,6 @@ docker-compose ps
 
 
 --psql debugg commands
-
 $ rm /usr/local/var/postgres/postmaster.pid
 $ brew services restart postgresql
 

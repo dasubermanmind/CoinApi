@@ -23,6 +23,7 @@ class App {
   public async initialize(): Promise<Iresults>{
     const results: Iresults = { success: false, error: '' };
     try{
+      console.log('db');
       const dbApp = await createConnection(this.db);
       await dbApp.runMigrations();
     }catch(error){
@@ -35,7 +36,7 @@ class App {
   }
 
   public mountPoints() : void {
-    this.application.use('http://localhost:3000/' + "/api", routers.primary());
+    this.application.use('http://localhost:3000/api', routers.primary());
   }
 }
 
