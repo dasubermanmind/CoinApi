@@ -1,23 +1,11 @@
-import { Request, Response, Router } from 'express';
-import financeController from '../controller/financeController';
+import express = require("express");
+import FinanceController from "../controller/financeController";
 
-class financeRouter{
-    private router = Router();
-    private controller = financeController;
-
-    get _router() {
-        return this.router;
-    }
-
-    constructor(){
-        this.configure();
-    }
-
-    configure = ()=>{
-        this.router.get('/', (request: Request, response: Response) =>{
-            response.status(200).json(this.controller.get());
-        });
-    }
+function financeRouter(): express.Router{
+    const router = express.Router();
+    const financeController  = new FinanceController();
+    router.get("/get", financeController.getAll);
+    return router;
 }
 
-export = new financeRouter()._router;
+export default financeRouter;

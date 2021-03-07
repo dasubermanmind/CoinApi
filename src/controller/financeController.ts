@@ -1,15 +1,20 @@
-import {getRepository, Repository} from "typeorm";
+import { getRepository, Repository } from "typeorm";
 import { Request, Response } from "express";
 import Crypto from "../entities/crypto";
 
 
 class FinanceController {
-    private repository: Repository<Crypto>;
+    private repository: Repository<Crypto> | undefined;
 
     constructor( ){
-        this.repository = getRepository(Crypto);
+
+        // this.repository = getRepository(Crypto);
     }
 
+
+     testRepo(){
+         this.repository = getRepository(Crypto);
+    }
     /*
     * There are 5 different QueryBuilder types available:
     * SelectQueryBuilder
@@ -20,12 +25,12 @@ class FinanceController {
     * */
 
     // Define functionality of the API
-    getAll = async (request: Request, response: Response): Promise<Response> =>{
+    getAll = async (request: Request, response: Response): Promise<void> =>{
         let cryptoQuery = request.query;
-        let query = this.repository.createQueryBuilder("crypto");
+        let query = this.repository && this.repository.createQueryBuilder("crypto");
 
-        const result = await query.getMany();
-        return response.send(result);
+        // const result = await query && query.getMany();
+        // return response.send(result);
     }
 
     /*
@@ -39,5 +44,5 @@ class FinanceController {
      */
 }
 
-export = new FinanceController();
+export default FinanceController;
 

@@ -1,22 +1,13 @@
 import { Router } from 'express';
-import financeRouter from './financeRouter';
+import express = require("express")
+import FinanceController from "../controller/financeController";
 
-class primaryRouter{
+function primaryRouter(): express.Router{
 
-    private router = Router();
-    private financeRouter = financeRouter;
-
-    get _router(){
-        return this.router;
-    }
-
-    constructor(){
-        this.configure();
-    }
-
-    private configure = ()=>{
-        this.router.use('/finance', this.financeRouter);
-    };
+    const router = express.Router();
+    const financeController  = new FinanceController();
+    router.get("/get", financeController.getAll);
+    return router;
 }
 
-export = new primaryRouter()._router;
+export default primaryRouter;

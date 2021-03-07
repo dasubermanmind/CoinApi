@@ -1,3 +1,4 @@
 node_modules
-.env
+.env*
 tsconfig.json
+ormconfig.env

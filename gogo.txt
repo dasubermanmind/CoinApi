@@ -5,3 +5,15 @@ docker run -p 3000:8280 -d laradockerman/crypto
 --docker compose script
 COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
 docker-compose ps
+
+
+
+--psql debugg commands
+
+$ rm /usr/local/var/postgres/postmaster.pid
+$ brew services restart postgresql
+
+
+------typeorm
+typeorm migration:create -n PostRefactoring
+typeorm migration:run //ts-node ./node_modules/typeorm/cli.js migration:run
