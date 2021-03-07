@@ -3,7 +3,7 @@ import { config as dotenv } from 'dotenv';
 
 dotenv();
 
-const CONNECTION_TIMEOUT = 2000;
+// const CONNECTION_TIMEOUT = 2000;
 
 const PGHOST = process.env.PGHOST || "http://127.0.0.1";
 const PGPORT = process.env.PGPORT ? parseInt(process.env.PGPORT) : 5432;

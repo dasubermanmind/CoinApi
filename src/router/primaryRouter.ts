@@ -5,6 +5,7 @@ function primaryRouter(): express.Router{
     const router = express.Router();
     const controller  = new FinanceController();
     router.route("/fin").get(controller.getAll);
+    router.route("/fin/:id").get(controller.get);
     return router;
 }
 

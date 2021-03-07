@@ -8,14 +8,6 @@ export default class FinanceController {
     constructor( ){
         this.repository = getRepository(Crypto);
     }
-    /*
-    * There are 5 different QueryBuilder types available:
-    * SelectQueryBuilder
-    * InsertQueryBuilder
-    * UpdateQueryBuilder
-    * DeleteQueryBuilder
-    * RelationQueryBuilder
-    * */
 
     getAll = async (request: Request, response: Response): Promise<Response> => {
         try {
@@ -41,10 +33,5 @@ export default class FinanceController {
             return response.sendStatus(500);
         }
     }
-
-
-
-
-
 }
 
