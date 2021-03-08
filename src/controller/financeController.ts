@@ -5,9 +5,9 @@ import Crypto from "../entities/crypto";
 export default class FinanceController {
     private repository: Repository<Crypto>;
 
-    constructor( ){
-        this.repository = getRepository(Crypto);
-    }
+    // constructor( ){
+    //     this.repository = getRepository(Crypto);
+    // }
 
     getAll = async (request: Request, response: Response): Promise<Response> => {
         try {
