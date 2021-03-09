@@ -3,8 +3,11 @@ docker images
 docker run -p 3000:8280 -d laradockerman/crypto
 
 --docker compose script
-COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
+docker-compose build
+ or COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
+
 docker-compose ps
+docker-compose up -d
 
 
 
@@ -16,3 +19,8 @@ $ brew services restart postgresql
 ------typeorm
 typeorm migration:create -n PostRefactoring
 typeorm migration:run //ts-node ./node_modules/typeorm/cli.js migration:run
+
+
+--Postgres DB
+docker exec -it express-typescript_db_1 bash
+psql -U postgres

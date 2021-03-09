@@ -4,6 +4,12 @@ import {
     PrimaryGeneratedColumn
 } from "typeorm";
 
+export interface Name {
+    familyName: string;
+    givenName: string;
+    middleName: string;
+}
+
 @Entity({ name: 'user' })
 class User{
     constructor(provider: string,
@@ -36,3 +42,5 @@ class User{
     @Column()
     photos: Array<any>;
 }
+
+export default User;
