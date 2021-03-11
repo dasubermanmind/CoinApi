@@ -1,14 +1,11 @@
-import { getRepository, Repository } from "typeorm";
 import { Request, Response } from "express";
-import Crypto from "../entities/crypto";
-import { CryptoRepository } from '../Repository/CryptoRepository';
+import { getCryptos,  getCrypto } from '../Repository/CryptoRepository';
 
- const FinanceController  = () => {
-   const crypto: CryptoRepository = new CryptoRepository();
+ export default class FinanceController {
 
-   const getAll = async (request: Request, response: Response): Promise<Response> => {
+     getAll = async (request: Request, response: Response): Promise<Response> => {
        try {
-            const resp= crypto.getCryptos();
+           const resp = getCryptos();
             if (!resp) return null;
             response.status(200).send(resp);
         } catch (error) {
@@ -17,10 +14,10 @@ import { CryptoRepository } from '../Repository/CryptoRepository';
         }
     }
 
-  const  get = async (request: Request, response: Response): Promise<Response>=>{
+    get = async (request: Request, response: Response): Promise<Response>=>{
         try {
             const { id } = request.params;
-            const resp= crypto.getCrypto(parseInt(id));
+            const resp= getCrypto(parseInt(id));
             return response.status(200).send(resp);
         } catch (error) {
             console.error(error);
@@ -28,6 +25,3 @@ import { CryptoRepository } from '../Repository/CryptoRepository';
         }
     }
 }
-
-export default FinanceController;
-

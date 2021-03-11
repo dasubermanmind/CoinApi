@@ -1,20 +1,13 @@
-import { getRepository, Repository } from "typeorm";
-import Crypto from "@/entities/crypto";
+import { getRepository } from "typeorm";
+import { CryptoCurrency } from "../entities/crypto";
 
- export class CryptoRepository  {
-     private repository: Repository<Crypto>;
-
-     constructor(){
-         this.repository = getRepository(Crypto);
-     }
-
-      getCryptos = async (): Promise<Crypto[] | unknown[]> => {
-        const cryptoRepository = getRepository(Crypto);
+     export const getCryptos = async (): Promise<Crypto[] | unknown[]> => {
+        const cryptoRepository = getRepository(CryptoCurrency);
         return cryptoRepository.find();
     };
 
-      getCrypto = async (id: number): Promise<Crypto | undefined | unknown> => {
-        const cryptoRepository = getRepository(Crypto);
+    export const  getCrypto = async (id: number): Promise<Crypto | undefined | unknown> => {
+        const cryptoRepository = getRepository(CryptoCurrency);
 
         const crypto = await cryptoRepository.findOne({ crypto_id: id });
         if (!crypto) return undefined;
@@ -22,4 +15,4 @@ import Crypto from "@/entities/crypto";
         return crypto;
     };
 
-}
+

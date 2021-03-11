@@ -11,7 +11,7 @@ export interface Name {
 }
 
 @Entity({ name: 'user' })
-class User{
+export class User{
     constructor(provider: string,
                 displayName: string,
                 name: Name,
@@ -42,5 +42,3 @@ class User{
     @Column()
     photos: Array<any>;
 }
-
-export default User;

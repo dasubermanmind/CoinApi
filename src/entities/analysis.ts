@@ -5,14 +5,14 @@ import {
     PrimaryGeneratedColumn
 } from "typeorm";
 
-import Crypto from "./crypto";
+import { CryptoCurrency } from "./crypto";
 
 @Entity({name: 'analysis'})
-class Analysis{
+export class Analysis{
 
     constructor(analysis_id: number ,
                 prediction_percentage: string,
-                compute: Crypto){
+                compute: CryptoCurrency){
         this.analysis_id = analysis_id;
         this.prediction_percentage = prediction_percentage;
         this.compute = compute;
@@ -24,8 +24,6 @@ class Analysis{
     @Column()
     prediction_percentage: string;
 
-    @ManyToOne((type)=> Crypto, (crypt)=>crypt.crypto_analysis)
-    compute: Crypto;
+    @ManyToOne((type)=> CryptoCurrency, (crypt)=>crypt.crypto_analysis)
+    compute: CryptoCurrency;
 }
-
-export default Analysis;
