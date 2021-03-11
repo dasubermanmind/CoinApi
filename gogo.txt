@@ -9,8 +9,6 @@ docker-compose build
 docker-compose ps
 docker-compose up -d
 
-
-
 --psql debugg commands
 $ rm /usr/local/var/postgres/postmaster.pid
 $ brew services restart postgresql
@@ -24,3 +22,24 @@ typeorm migration:run //ts-node ./node_modules/typeorm/cli.js migration:run
 --Postgres DB
 docker exec -it express-typescript_db_1 bash
 psql -U postgres
+
+
+----Redis
+docker pull redis
+docker run -p 6379:6379 --name redis-sample -d redis
+start redis server
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+configure
+redis-server /usr/local/etc/redis.conf
+to start
+brew tap homebrew/services
+brew services [start/stop/restart] redis
+
+if these dont work then
+alias redisstart='sudo launchctl start io.redis.redis-server'
+alias redisstop='sudo launchctl stop io.redis.redis-server'
+
+
+
+
+
