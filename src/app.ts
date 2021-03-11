@@ -6,8 +6,6 @@ import routers from './router';
 import { ConnectionOptions, createConnection } from 'typeorm';
 import "reflect-metadata";
 import { RedisClient } from "redis";
-const redis = require('redis');
-let RedisStore = require('connect-redis')(session);
 
 export interface Iresults{
   success: boolean;
@@ -18,12 +16,13 @@ class App {
 
   public application: express.Application;
   public db: ConnectionOptions;
-  private redisClient: RedisClient
+  public redisClient: RedisClient;
 
   constructor(db: ConnectionOptions){
     if(!db){
       console.log('no db configs found');
     }
+
     this.application = express();
     this.db = db;
   }
@@ -45,6 +44,8 @@ class App {
 
   public async sessionManagement(): Promise<void> {
 
+    let RedisStore = require('connect-redis')(express);
+
     this.redisClient = new RedisClient({
       port: 6379, // TODO: WHen updating the docker-compos make sure this matches
       host: '127.0.0.1',
@@ -63,7 +64,12 @@ class App {
         sameSite: true,
         maxAge: 600000.
       },
-      store: new RedisStore({ client: this.redisClient ,ttl: 86400}),
+      store: new RedisStore({
+            client:
+            this.redisClient ,
+            ttl: 86400,
+            prefix: `crypt-session:`
+          }),
       resave: false
     }));
 
