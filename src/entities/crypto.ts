@@ -5,10 +5,10 @@ import {
     OneToMany
 } from "typeorm";
 
-import Analysis from "./analysis";
+import { Analysis } from "./analysis";
 
-@Entity({ name: 'crypto' })
- class Crypto {
+@Entity()
+ export class CryptoCurrency {
 
     constructor(name: string,
                 listing_price: number,
@@ -35,5 +35,3 @@ import Analysis from "./analysis";
     @OneToMany((type)=> Analysis,(analysis)=>analysis.compute)
     crypto_analysis: Analysis[];
 }
-
-export default Crypto;

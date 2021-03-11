@@ -1,19 +1,13 @@
-import { getRepository, Repository } from "typeorm";
 import { Request, Response } from "express";
-import Crypto from "../entities/crypto";
+import { getCryptos,  getCrypto } from '../Repository/CryptoRepository';
 
-export default class FinanceController {
-    private repository: Repository<Crypto>;
+ export default class FinanceController {
 
-    // constructor( ){
-    //     this.repository = getRepository(Crypto);
-    // }
-
-    getAll = async (request: Request, response: Response): Promise<Response> => {
-        try {
-            const cryptos = await this.repository.createQueryBuilder("crypto")
-                .getMany();
-            return response.status(200).send(cryptos);
+     getAll = async (request: Request, response: Response): Promise<Response> => {
+       try {
+           const resp = getCryptos();
+            if (!resp) return null;
+            response.status(200).send(resp);
         } catch (error) {
             console.error(error);
             return response.sendStatus(500);
@@ -23,15 +17,11 @@ export default class FinanceController {
     get = async (request: Request, response: Response): Promise<Response>=>{
         try {
             const { id } = request.params;
-            const crypto = await this.repository.findOne(id);
-            if (!crypto) {
-                return response.status(400).send("No cryptocurrencies found with that name");
-            }
-            return response.status(200).send(crypto);
+            const resp= getCrypto(parseInt(id));
+            return response.status(200).send(resp);
         } catch (error) {
             console.error(error);
             return response.sendStatus(500);
         }
     }
 }
-

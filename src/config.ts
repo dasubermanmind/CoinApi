@@ -1,8 +1,8 @@
 import { ConnectionOptions } from 'typeorm';
 import { config as dotenv } from 'dotenv';
-import User from "./entities/user";
-import Analysis from "./entities/analysis";
-import Crypto from "./entities/crypto";
+import { User } from "./entities/user";
+import { Analysis } from "./entities/analysis";
+import { CryptoCurrency } from "./entities/crypto";
 
 dotenv();
 
@@ -20,7 +20,7 @@ const db = (): ConnectionOptions => {
         url: encodeURI(
             `postgresql://${PGUSER}:${PGPW}@${PGHOST}:${PGPORT}/${PGDB}`
         ),
-        entities:[User, Analysis, Crypto],
+        entities:[User, Analysis, CryptoCurrency],
         migrations: ['src/migrations/**/*.ts,js'],
         synchronize: false,
         logging: false,
