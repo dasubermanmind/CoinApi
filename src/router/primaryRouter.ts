@@ -7,8 +7,10 @@ const swaggerUi = require('swagger-ui-express');
 function primaryRouter(): express.Router{
     const router = express.Router();
     const controller  = new FinanceController();
-    router.route("/fin").get(controller.getAll);
-    router.route("/fin/:id").get(controller.get);
+
+    router.get("/fin", controller.getAll);
+    router.get("/fin/:id", controller.get);
+
     router.use('/api-docs', swaggerUi.serve);
     router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
