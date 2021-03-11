@@ -1,7 +1,11 @@
 import express = require("express");
+import session from "express-session";
+import bodyParser from "body-parser";
+import cookieSession from "cookie-session";
 import routers from './router';
 import { ConnectionOptions, createConnection } from 'typeorm';
 import "reflect-metadata";
+import * as crypto from "crypto";
 
 export interface Iresults{
   success: boolean;
@@ -34,6 +38,34 @@ class App {
     this.mountPoints();
     results.success = true;
     return results;
+  }
+
+  public async sessionManagement(): Promise<void> {
+    this.application.use(bodyParser.json());
+    this.application.use(bodyParser.urlencoded({extended: true}));
+    // TODO: Need to research and implement genuid()
+    // TODO: Implement Redis data store
+    this.application.use(session({
+      secret: process.env.sessionSecret,
+      cookie: {
+        httpOnly: true,
+        secure: true,
+        sameSite: true,
+        maxAge: 600000.
+      }
+    }));
+
+    /* This should go in user router/controller which ever makes more sense
+    const sessionChecker = (request, response, next) => {
+      if (request.session.user && request.cookies.user_sid) {
+        response.redirect('/dashboard');
+      } else {
+        next();
+      }
+    };
+    */
+    this.application.set('trust proxy',1);
+    this.application.use(cookieSession({ keys: [process.env.cookieSession] }))
   }
 
   public mountPoints() : void {
