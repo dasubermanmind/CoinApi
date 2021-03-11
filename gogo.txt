@@ -39,6 +39,53 @@ if these dont work then
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
 
+--Refactor to this
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const redisClient = require('redis').createClient({ host: getSetting('keyStoreHost') });
+
+//for this purpose, just assume this is an array of customer id's:
+// ['customer-A', 'customer-B', etc]
+const getCustomers = require('./our-customers');
+
+// a hash table to store references to all of the middlewares we're going to generate
+const customerSessionMiddleware = {};
+
+const SessionMiddlewareConfig = {
+	secret: 'keyboard-cat',
+	resave: true,
+	saveUninitialized: true,
+	key: 'cookie-name'
+};
+
+const RedisStoreConfig = {
+	client: redisClient,
+	ttl: 60 * 60 //1 hour in seconds
+};
+
+const configureMiddleware = (cust, app) =>
+	session({
+		...SessionMiddlewareConfig,
+		store: new RedisStore({
+			...RedisStoreConfig,
+			prefix: `sessions:${cust.toLowerCase()}:${app}:`
+		})
+	});
+
+const dynamicSessions = app => {
+	//load all session stores up once at startup
+	getCustomers().forEach(cust => {
+		customerSessionMiddleware[cust] = configureMiddleware(cust, app);
+	});
+
+	return function dynamicSessionMiddleware(req, res, next) {
+		const customerMiddleware = customerSessionMiddleware[req.CUSTOMER];
+		return customerMiddleware(req, res, next);
+	};
+};
+
+module.exports = dynamicSessions;
+
 
 
 
