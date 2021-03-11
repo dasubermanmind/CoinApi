@@ -114,7 +114,7 @@
     "moment" "^2.24.0"
     "validator" "^12.2.0"
 
-"@types/body-parser@*":
+"@types/body-parser@*", "@types/body-parser@^1.19.0":
   "integrity" "sha512-W98JrE0j2K78swW4ukqMleo8R7h/pFETjM2DQ90MF6XK2i4LO4W3gQ71Lt4w3bfm2EvVSyWHplECvB5sK22yFQ=="
   "resolved" "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.19.0.tgz"
   "version" "1.19.0"
@@ -144,6 +144,14 @@
   dependencies:
     "@types/express" "*"
 
+"@types/cookie-session@^2.0.42":
+  "integrity" "sha512-AuaDuL+MqgB6B28CzFIaRvJBsT4kpfdY0fBgG8WlycaXgEANLCn6wMUA6I6lb8ZOxVR+RXWknUcRPTLBxr+oOw=="
+  "resolved" "https://registry.npmjs.org/@types/cookie-session/-/cookie-session-2.0.42.tgz"
+  "version" "2.0.42"
+  dependencies:
+    "@types/express" "*"
+    "@types/keygrip" "*"
+
 "@types/express-serve-static-core@^4.17.18", "@types/express-serve-static-core@^4.17.2":
   "integrity" "sha512-m4JTwx5RUBNZvky/JJ8swEJPKFd8si08pPF2PfizYjGZOKr/svUWPcoUmLow6MmPzhasphB7gSTINY67xn3JNA=="
   "resolved" "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-4.17.18.tgz"
@@ -152,6 +160,13 @@
     "@types/node" "*"
     "@types/qs" "*"
     "@types/range-parser" "*"
+
+"@types/express-session@^1.17.3":
+  "integrity" "sha512-57DnyxiqClXOIjoCgeKCUYfKxBPOlOY/k+l1TPK+7bSwyiPTrS5FIk1Ycql7twk4wO7P5lfOVy6akDGiaMSLfw=="
+  "resolved" "https://registry.npmjs.org/@types/express-session/-/express-session-1.17.3.tgz"
+  "version" "1.17.3"
+  dependencies:
+    "@types/express" "*"
 
 "@types/express@*", "@types/express@^4.17.11", "@types/express@^4.17.2":
   "integrity" "sha512-no+R6rW60JEc59977wIxreQVsIEOAYwgCqldrA/vkpCnbD7MqTefO97lmoBe4WE0F156bC4uLSP1XHDOySnChg=="
@@ -162,6 +177,11 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/keygrip@*":
+  "integrity" "sha512-GJhpTepz2udxGexqos8wgaBx4I/zWIDPh/KOGEwAqtuGDkOUJu5eFvwmdBX4AmB8Odsr+9pHCQqiAqDL/yKMKw=="
+  "resolved" "https://registry.npmjs.org/@types/keygrip/-/keygrip-1.0.2.tgz"
+  "version" "1.0.2"
 
 "@types/mime@^1":
   "integrity" "sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw=="
@@ -175,10 +195,10 @@
   dependencies:
     "@types/express" "*"
 
-"@types/node@*", "@types/node@^14.14.32":
-  "integrity" "sha512-/Ctrftx/zp4m8JOujM5ZhwzlWLx22nbQJiVqz8/zE15gOeEW+uly3FSX4fGFpcfEvFzXcMCJwq9lGVWgyARXhg=="
-  "resolved" "https://registry.npmjs.org/@types/node/-/node-14.14.32.tgz"
-  "version" "14.14.32"
+"@types/node@*", "@types/node@^14.14.33":
+  "integrity" "sha512-oJqcTrgPUF29oUP8AsUqbXGJNuPutsetaa9kTQAQce5Lx5dTYWV02ScBiT/k1BX/Z7pKeqedmvp39Wu4zR7N7g=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-14.14.33.tgz"
+  "version" "14.14.33"
 
 "@types/passport@^1.0.2":
   "integrity" "sha512-9oKfrJXuAxvyxdrtMCxKkHgmd6DMO8NDOLvMJ1LvIWd6/xP+i81PAkpTaEca7VhJX9S009RciwZL/j6dsLsHrA=="
@@ -698,6 +718,15 @@
     "cookie" "0.4.0"
     "cookie-signature" "1.0.6"
 
+"cookie-session@^1.4.0":
+  "integrity" "sha512-0hhwD+BUIwMXQraiZP/J7VP2YFzqo6g4WqZlWHtEHQ22t0MeZZrNBSCxC1zcaLAs8ApT3BzAKizx9gW/AP9vNA=="
+  "resolved" "https://registry.npmjs.org/cookie-session/-/cookie-session-1.4.0.tgz"
+  "version" "1.4.0"
+  dependencies:
+    "cookies" "0.8.0"
+    "debug" "2.6.9"
+    "on-headers" "~1.0.2"
+
 "cookie-signature@1.0.6":
   "integrity" "sha1-4wOogrNCzD7oylE6eZmXNNqzriw="
   "resolved" "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz"
@@ -707,6 +736,14 @@
   "integrity" "sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg=="
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.4.0.tgz"
   "version" "0.4.0"
+
+"cookies@0.8.0":
+  "integrity" "sha512-8aPsApQfebXnuI+537McwYsDtjVxGm8gTIzQI3FDW6t5t/DAhERxtnbEPN/8RX+uZthoz4eCOgloXaE5cYyNow=="
+  "resolved" "https://registry.npmjs.org/cookies/-/cookies-0.8.0.tgz"
+  "version" "0.8.0"
+  dependencies:
+    "depd" "~2.0.0"
+    "keygrip" "~1.1.0"
 
 "core-js@^3.2.1":
   "integrity" "sha512-gSjRvzkxQc1zjM/5paAmL4idJBFzuJoo+jDjF1tStYFMV2ERfD02HhahhCGXUyHxQRG4yFKVSdO6g62eoRMcDg=="
@@ -1403,6 +1440,13 @@
   "integrity" "sha512-CXcRvMyTlnR53xMcKnuMzfCA5i/nfblTnnr74CZb6C4vG39eu6w51t7nKmU5MfLfbTgGItliNyjO/ciNPDqClg=="
   "resolved" "https://registry.npmjs.org/jsonpointer/-/jsonpointer-4.1.0.tgz"
   "version" "4.1.0"
+
+"keygrip@~1.1.0":
+  "integrity" "sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ=="
+  "resolved" "https://registry.npmjs.org/keygrip/-/keygrip-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "tsscmp" "1.0.6"
 
 "keyv@^3.0.0":
   "integrity" "sha512-9ykJ/46SN/9KPM/sichzQ7OvXyGDYKGTaDlKMGCAlg2UK8KRy4jb0d8sFc+0Tt0YYnThq8X2RZgCg74RPxgcVA=="
@@ -2510,6 +2554,11 @@
   dependencies:
     "@tsoa/cli" "^3.5.2"
     "@tsoa/runtime" "^3.5.2"
+
+"tsscmp@1.0.6":
+  "integrity" "sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA=="
+  "resolved" "https://registry.npmjs.org/tsscmp/-/tsscmp-1.0.6.tgz"
+  "version" "1.0.6"
 
 "type-fest@^0.8.1":
   "integrity" "sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA=="
