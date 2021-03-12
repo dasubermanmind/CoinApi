@@ -3,3 +3,8 @@ export interface Name {
   givenName: string;
   middleName: string;
 }
+
+export interface IResults {
+  success: boolean;
+  error: string;
+}

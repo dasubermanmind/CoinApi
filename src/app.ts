@@ -6,11 +6,7 @@ import routers from './router';
 import { ConnectionOptions, createConnection } from 'typeorm';
 import 'reflect-metadata';
 import { RedisClient } from 'redis';
-
-export interface Iresults {
-  success: boolean;
-  error: string;
-}
+import { IResults } from '@/Types/types';
 
 class App {
   public application: express.Application;
@@ -26,8 +22,8 @@ class App {
     this.db = db;
   }
 
-  public async initialize(): Promise<Iresults> {
-    const results: Iresults = { success: false, error: '' };
+  public async initialize(): Promise<IResults> {
+    const results: IResults = { success: false, error: '' };
     try {
       console.log('db');
       const dbApp = await createConnection(this.db);
