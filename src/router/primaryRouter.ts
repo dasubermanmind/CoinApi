@@ -8,11 +8,11 @@ function primaryRouter(): express.Router {
   const router = express.Router();
   const controller = new FinanceController();
 
-  router.get('/fin', controller.getAll);
+  router.get('/home', controller.getAll);
   router.get('/fin/:id', controller.get);
 
-  router.use('/api-docs', swaggerUi.serve);
-  router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+  router.use('api-docs', swaggerUi.serve);
+  router.get('api-docs', swaggerUi.setup(swaggerDocument));
 
   return router;
 }

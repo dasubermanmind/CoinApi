@@ -3,8 +3,8 @@ import FinanceController from '../controller/financeController';
 
 function financeRouter(): express.Router {
   const router = express.Router();
-  const financeController = new FinanceController();
-  router.get('/get', financeController.getAll);
+  // const financeController = new FinanceController();
+  // router.get('/', financeController.getAll);
   return router;
 }
 

@@ -46,14 +46,12 @@ class App {
 
     this.redisClient = new RedisClient({
       port: 6379, // TODO: WHen updating the docker-compos make sure this matches
-      host: '127.0.0.1',
-      password: process.env.REDIS_PASSWORD
+      host: '127.0.0.1'
     });
 
     this.application.use(bodyParser.json());
     this.application.use(bodyParser.urlencoded({ extended: true }));
     // TODO: Need to research and implement genuid()
-    // TODO: Implement Redis data store
     this.application.use(
       session({
         secret: process.env.SESSION_SECRET,
@@ -72,21 +70,14 @@ class App {
       })
     );
 
-    /* This should go in user router/controller which ever makes more sense
-    const sessionChecker = (request, response, next) => {
-      if (request.session.user && request.cookies.user_sid) {
-        response.redirect('/dashboard');
-      } else {
-        next();
-      }
-    };
-    */
     this.application.set('trust proxy', 1);
     this.application.use(cookieSession({ keys: [process.env.COOKIE_SESSION] }));
   }
 
   public mountPoints(): void {
-    this.application.use('http://localhost:3000/', routers.primary());
+    this.application.use('/', routers.primary());
+    this.application.use('/finance', routers.finance());
+    this.application.use('/user', routers.user());
   }
 }
 
