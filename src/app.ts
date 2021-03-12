@@ -35,7 +35,7 @@ class App {
     } catch (error) {
       results.error = 'Db connect failed';
     }
-    // await this.sessionManagement();
+
     this.mountPoints();
     results.success = true;
     return results;
@@ -52,7 +52,6 @@ class App {
     this.application.use(bodyParser.json());
     this.application.use(bodyParser.urlencoded({ extended: true }));
     // TODO: Need to research and implement genuid()
-    // TODO: Implement Redis data store
     this.application.use(
       session({
         secret: process.env.SESSION_SECRET,
