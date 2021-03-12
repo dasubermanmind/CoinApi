@@ -46,7 +46,7 @@ class App {
 
     this.redisClient = new RedisClient({
       port: 6379, // TODO: WHen updating the docker-compos make sure this matches
-      host: '127.0.0.1',
+      host: '127.0.0.1'
     });
 
     this.application.use(bodyParser.json());
@@ -77,6 +77,8 @@ class App {
 
   public mountPoints(): void {
     this.application.use('/', routers.primary());
+    this.application.use('/finance', routers.finance());
+    this.application.use('/user', routers.user());
   }
 }
 
