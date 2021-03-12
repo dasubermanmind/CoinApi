@@ -35,7 +35,7 @@ class App {
     } catch (error) {
       results.error = 'Db connect failed';
     }
-
+    // await this.sessionManagement();
     this.mountPoints();
     results.success = true;
     return results;
@@ -47,7 +47,6 @@ class App {
     this.redisClient = new RedisClient({
       port: 6379, // TODO: WHen updating the docker-compos make sure this matches
       host: '127.0.0.1',
-      password: process.env.REDIS_PASSWORD
     });
 
     this.application.use(bodyParser.json());
@@ -77,7 +76,7 @@ class App {
   }
 
   public mountPoints(): void {
-    this.application.use('http://localhost:3000/', routers.primary());
+    this.application.use('/', routers.primary());
   }
 }
 
