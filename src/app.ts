@@ -72,15 +72,6 @@ class App {
       })
     );
 
-    /* This should go in user router/controller which ever makes more sense
-    const sessionChecker = (request, response, next) => {
-      if (request.session.user && request.cookies.user_sid) {
-        response.redirect('/dashboard');
-      } else {
-        next();
-      }
-    };
-    */
     this.application.set('trust proxy', 1);
     this.application.use(cookieSession({ keys: [process.env.COOKIE_SESSION] }));
   }
