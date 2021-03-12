@@ -1,37 +1,33 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    OneToMany
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import { Analysis } from "./analysis";
+import { Analysis } from './analysis';
 
 @Entity()
- export class CryptoCurrency {
+export class CryptoCurrency {
+  constructor(
+    name: string,
+    listing_price: number,
+    ath: number,
+    crypto_analysis: Analysis[]
+  ) {
+    this.name = name;
+    this.listing_price = listing_price;
+    this.ath = ath;
+    this.crypto_analysis = crypto_analysis;
+  }
 
-    constructor(name: string,
-                listing_price: number,
-                ath: number,
-                crypto_analysis: Analysis[]){
-        this.name = name;
-        this.listing_price = listing_price;
-        this.ath = ath;
-        this.crypto_analysis = crypto_analysis;
-    }
+  @PrimaryGeneratedColumn()
+  crypto_id: number;
 
-    @PrimaryGeneratedColumn()
-    crypto_id: number;
+  @Column()
+  name: string;
 
-    @Column()
-    name: string;
-    
-    @Column()
-    listing_price: number;
-    
-    @Column()
-    ath: number;
+  @Column()
+  listing_price: number;
 
-    @OneToMany((type)=> Analysis,(analysis)=>analysis.compute)
-    crypto_analysis: Analysis[];
+  @Column()
+  ath: number;
+
+  @OneToMany((type) => Analysis, (analysis) => analysis.compute)
+  crypto_analysis: Analysis[];
 }
