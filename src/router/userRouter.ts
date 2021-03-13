@@ -1,5 +1,6 @@
 import express = require('express');
 import passport = require('passport');
+import {createUser} from "../Repository/UserRepository";
 const GoogleStrategy = require('passport-google-oauth20');
 
 function userRouter(): express.Router {
@@ -12,8 +13,11 @@ function userRouter(): express.Router {
         clientSecret: process.env.GOOGLE_SECRET,
         callback: '/user/auth/google/callback'
       },
-      (accessToken) => {
+      (accessToken, refreshToken, profile, done) => {
+          console.log('profile', profile);
+        createUser(profile);
         console.log('accessToken', accessToken);
+        done();
       }
     )
   );
@@ -26,11 +30,6 @@ function userRouter(): express.Router {
   );
 
   router.get('/user/auth/google/callback', passport.authenticate('google'));
-  // user controller
-  /*
-    router.get('/fin', controller.getAll);
-    router.get('/fin/:id', controller.get);
-    */
   return router;
 }
 
