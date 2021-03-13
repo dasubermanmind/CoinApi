@@ -7,6 +7,7 @@ import { ConnectionOptions, createConnection } from 'typeorm';
 import 'reflect-metadata';
 import { RedisClient } from 'redis';
 import { IResults } from '@/Types/types';
+import passport from 'passport';
 
 class App {
   public application: express.Application;
@@ -74,6 +75,8 @@ class App {
     this.application.use('/', routers.primary());
     this.application.use('/finance', routers.finance());
     this.application.use('/user', routers.user());
+    // this.application.use(passport.initialize());
+    // this.application.use(passport.session());
   }
 }
 

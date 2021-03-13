@@ -6,6 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 // TODO: Make a Swagger Router
 function primaryRouter(): express.Router {
   const router = express.Router();
+
   const controller = new FinanceController();
 
   router.get('/home', controller.getAll);
