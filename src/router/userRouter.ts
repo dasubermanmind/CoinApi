@@ -49,6 +49,11 @@ function userRouter(): express.Router {
     }
   );
 
+  router.get('/logout', (request, response) => {
+    request.logout();
+    response.redirect('/');
+  });
+
   return router;
 }
 
