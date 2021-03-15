@@ -13,7 +13,7 @@ export class User {
     displayName: string,
     name: Name,
     emails: string,
-    photos: Array<any>
+    photos: Array<HTMLImageElement>
   ) {
     this.provider = provider;
     this.displayName = displayName;

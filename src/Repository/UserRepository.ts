@@ -18,7 +18,13 @@ export const getUser = async (id: number): Promise<User | undefined> => {
 
 export const createUser = async (profile: User): Promise<User> => {
   const userRepository = getRepository(User);
-  const user = new User(profile.provider, profile.displayName, profile.name, profile.emails, profile.photos);
+  const user = new User(
+    profile.provider,
+    profile.displayName,
+    profile.name,
+    profile.emails,
+    profile.photos
+  );
   return userRepository.save({
     ...user,
     ...profile

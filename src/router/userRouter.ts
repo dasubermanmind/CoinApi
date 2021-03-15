@@ -1,10 +1,13 @@
 import express = require('express');
 import passport = require('passport');
-import {createUser} from "../Repository/UserRepository";
+import { createUser } from '../Repository/UserRepository';
+import { User } from '@/entities/user';
+import UserController from '@/controller/userController';
 const GoogleStrategy = require('passport-google-oauth20');
 
 function userRouter(): express.Router {
   const router = express.Router();
+  const controller = new UserController();
 
   passport.use(
     new GoogleStrategy(
@@ -14,7 +17,7 @@ function userRouter(): express.Router {
         callback: '/user/auth/google/callback'
       },
       (accessToken, refreshToken, profile, done) => {
-          console.log('profile', profile);
+        console.log('profile', profile);
         createUser(profile);
         console.log('accessToken', accessToken);
         done();
@@ -29,7 +32,23 @@ function userRouter(): express.Router {
     })
   );
 
+  passport.serializeUser((user: User, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser((user: User, done) => {
+    done(null, user);
+  });
+
   router.get('/user/auth/google/callback', passport.authenticate('google'));
+  router.get(
+    '/defineLater',
+    controller.isUserAuthenticated,
+    (request, response) => {
+      response.send('Nice');
+    }
+  );
+
   return router;
 }
 

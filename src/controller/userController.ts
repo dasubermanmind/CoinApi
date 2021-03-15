@@ -20,4 +20,12 @@ export default class UserController {
       next();
     }
   };
+
+  isUserAuthenticated = (request, response, next): void => {
+    if (request.user) {
+      next();
+    } else {
+      response.send('Please login to have full functionality');
+    }
+  };
 }
