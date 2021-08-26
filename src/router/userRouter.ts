@@ -1,8 +1,8 @@
 import express = require('express');
 import passport = require('passport');
 import { createUser } from '../Repository/UserRepository';
-import { User } from '@/entities/user';
-import UserController from '@/controller/userController';
+import { User } from '../entities/user';
+import UserController from '../controller/userController';
 const GoogleStrategy = require('passport-google-oauth20');
 
 function userRouter(): express.Router {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getUser } from '@/Repository/UserRepository';
+import { getUser } from '../Repository/UserRepository';
 
 export default class UserController {
   get = async (request: Request, response: Response): Promise<Response> => {
